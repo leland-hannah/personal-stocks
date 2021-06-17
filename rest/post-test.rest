@@ -1,0 +1,7 @@
+PUT https://j24s2o0l5e.execute-api.us-west-2.amazonaws.com/dev/personal-stocks/3
+Content-Type: application/json
+
+{
+    "ID" : "3",
+    "Price" : "123400.6"
+}

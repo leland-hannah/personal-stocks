@@ -1,0 +1,50 @@
+service: personal-stocks-API-2
+
+frameworkVersion: "<3.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: "us-west-2"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-west-2:429937773353:table/personal_stocks"
+
+
+functions:
+
+  get:
+    handler: todos/get.get
+    events:
+      - http:
+          path: personal-stocks/{ID}
+          method: get
+          cors: true
+  post:
+    handler: todos/create.create
+    events:
+      - http:
+          path: personal-stocks/
+          method: post
+          cors: true
+  delete:
+    handler: todos/delete.delete
+    events: 
+      - http:
+          path: personal-stocks/{ID}
+          method: delete
+          cors: true
+  put: 
+    handler: todos/update.update
+    events:
+      - http:
+          path: personal-stocks/{ID}
+          method: put
+          cors: true
